@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs'
 
-const input = readFileSync('input1.txt', 'utf-8')
+const input = readFileSync('day1/input.txt', 'utf-8')
 const inputArr = input.split("\n\n")
 const inputLength = inputArr.length
 const elfArr = inputArr.map(elf => elf.split("\n").map(foodItem => Number(foodItem)))
