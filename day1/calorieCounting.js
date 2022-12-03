@@ -1,8 +1,6 @@
-import { readFileSync } from 'fs'
-import { getFilePath } from '../helper.js'
+import { getInput } from '../helper.js'
 
-const inputFilePath = getFilePath('day1/input.txt')
-const input = readFileSync(inputFilePath, 'utf-8')
+const input = getInput('day1/input.txt')
 
 const elfCaloriesCarriedArray = input.split("\n\n").map(elf => elf.split("\n").map(foodItem => Number(foodItem)))
 const elfCaloriesCarriedTotals = elfCaloriesCarriedArray.map(elf => elf.reduce((sum, currentValue) => sum + currentValue, 0))
