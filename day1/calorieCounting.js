@@ -1,15 +1,7 @@
 import { readFileSync } from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import { getFilePath } from '../helper.js'
 
-const getFilePath = (filename) => {
-  const __filename = fileURLToPath(import.meta.url)
-  const __dirname = path.dirname(__filename)
-  const inputFilePath = __dirname + '/' + filename
-  return inputFilePath
-}
-
-const inputFilePath = getFilePath('input.txt')
+const inputFilePath = getFilePath('day1/input.txt')
 const input = readFileSync(inputFilePath, 'utf-8')
 
 const elfCaloriesCarriedArray = input.split("\n\n").map(elf => elf.split("\n").map(foodItem => Number(foodItem)))
