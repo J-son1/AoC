@@ -13,15 +13,9 @@ const inputFilePath = getFilePath('input.txt')
 const input = readFileSync(inputFilePath, 'utf-8')
 
 const inputArr = input.split("\n\n")
-const inputLength = inputArr.length
-const elfArr = inputArr.map(elf => elf.split("\n").map(foodItem => Number(foodItem)))
-
-let mostCaloriesCarried = 0
-for (let elf = 0; elf < inputLength; elf++) {
-  let caloriesCarried = elfArr[elf].reduce((sum, currentValue) => sum + currentValue, 0)
-  if (caloriesCarried > mostCaloriesCarried) {
-    mostCaloriesCarried = caloriesCarried
-  }
-}
+// const inputLength = inputArr.length
+const elfCaloriesCarriedArray = inputArr.map(elf => elf.split("\n").map(foodItem => Number(foodItem)))
+const elfCaloriedCarriedTotals = elfCaloriesCarriedArray.map(elf => elf.reduce((sum, currentValue) => sum + currentValue, 0))
+const mostCaloriesCarried = Math.max(...elfCaloriedCarriedTotals)
 
 console.log(mostCaloriesCarried)
