@@ -55,12 +55,3 @@ const getMyTotalGameScore = (input) => {
 let myScore = getMyTotalGameScore(encryptedStrategyGuideArray)
 
 console.log(myScore)
-
-
-
-// refactor by converting shapes to shape values 
-// - SHAPE_SCORES to be array on shapes with (index + 1) as shape value
-// - SHAPE_VALUES to be an array of encrypted shapes with (index + 1) as shape value?
-// - index references shape. index + 1 = shape value?
-// and then mapping original input to be shape values
-// then map shape values to GAME_RULES
