@@ -3,32 +3,27 @@ import { getInput } from '../helper.js'
 const input = getInput('day2/input.txt')
 const encryptedStrategyGuideArray = input.split('\n').map(round => round.split(' '))
 
-const SHAPES = { 
-  'Rock': { value: 1, encrypedValues: ['A', 'X'], gameOutcome: { 'Rock': 'Draw', 'Paper': 'Lose', 'Scissors': 'Win' }}, 
-  'Paper': { value: 2, encrypedValues: ['B', 'Y'], gameOutcome: { 'Rock': 'Win', 'Paper': 'Draw', 'Scissors': 'Lose' }},
-  'Scissors': { value: 3, encrypedValues: ['C', 'Z'], gameOutcome: { 'Rock': 'Lose', 'Paper': 'Win', 'Scissors': 'Draw' }}
-}
+const SHAPE_VALUES = { 'Rock': ['A', 'X'], 'Paper': ['B', 'Y'], 'Scissors': ['C', 'Z'] }
+const SHAPE_SCORES = { 'Rock': 1, 'Paper': 2, 'Scissors': 3 }
 const OUTCOME_SCORES = { 'Lose': 0, 'Draw': 3, 'Win': 6 }
-
-const getShape = (shapes, letter) => {
-  let result
-  Object.entries(shapes).find((shapeData) => {
-    let [shape, shapeValues] = shapeData
-    if (shapes[shape].encrypedValues.includes(letter)) {
-      result = shape
-    }
-  })
-  return result
+const GAME_RULES = {
+  'Rock': { 'Rock': 'Draw', 'Paper': 'Lose', 'Scissors': 'Win' },
+  'Paper': { 'Rock': 'Win', 'Paper': 'Draw', 'Scissors': 'Lose' },
+  'Scissors': { 'Rock': 'Lose', 'Paper': 'Win', 'Scissors': 'Draw' }
 }
 
-const getShapeScore = (shapes, shape) => {
-  return shapes[shape].value
+const getShape = (shapeValues, letter) => {
+  return Object.keys(shapeValues).find((shape) => shapeValues[shape].includes(letter))
 }
 
-const getMyOutcome = (shapes, roundData) => {
-  const opponentShape = getShape(shapes, roundData[0])
-  const myShape = getShape(shapes, roundData[1])
-  return shapes[myShape].gameOutcome[opponentShape]
+const getShapeScore = (shapeScores, shape) => {
+  return shapeScores[shape]
+}
+
+const getMyOutcome = (rules, shapeValues, roundData) => {
+  const opponentShape = getShape(shapeValues, roundData[0])
+  const myShape = getShape(shapeValues, roundData[1])
+  return rules[myShape][opponentShape]
 }
 
 const getMyOutcomeScore = (outcomeScores, outcome) => {
@@ -47,9 +42,9 @@ const getMyTotalGameScore = (input) => {
   let myOutcomeScore
   let myRoundScore
   input.forEach(roundData => {
-    myShape = getShape(SHAPES, roundData[1])
-    myShapeScore = getShapeScore(SHAPES, myShape)
-    myOutcome = getMyOutcome(SHAPES, roundData)
+    myShape = getShape(SHAPE_VALUES, roundData[1])
+    myShapeScore = getShapeScore(SHAPE_SCORES, myShape)
+    myOutcome = getMyOutcome(GAME_RULES, SHAPE_VALUES, roundData)
     myOutcomeScore = getMyOutcomeScore(OUTCOME_SCORES, myOutcome)
     myRoundScore = getMyRoundScore(myShapeScore, myOutcomeScore)
     myTotalGameScore += myRoundScore
@@ -60,3 +55,12 @@ const getMyTotalGameScore = (input) => {
 let myScore = getMyTotalGameScore(encryptedStrategyGuideArray)
 
 console.log(myScore)
+
+
+
+// refactor by converting shapes to shape values 
+// - SHAPE_SCORES to be array on shapes with (index + 1) as shape value
+// - SHAPE_VALUES to be an array of encrypted shapes with (index + 1) as shape value?
+// - index references shape. index + 1 = shape value?
+// and then mapping original input to be shape values
+// then map shape values to GAME_RULES
