@@ -11,10 +11,34 @@ const GAME_RULES = {
   'Paper': { 'Rock': 'Win', 'Paper': 'Draw', 'Scissors': 'Lose' },
   'Scissors': { 'Rock': 'Lose', 'Paper': 'Win', 'Scissors': 'Draw' }
 }
+const ENCRYPTED_STRATEGY_VALUES = { 'Lose': ['X'], 'Draw': ['Y'], 'Win': ['Z'] }
 
 const getShape = (shapeValues, letter) => {
   return Object.keys(shapeValues).find((shape) => shapeValues[shape].includes(letter))
 }
+
+const getOutcomeStrategy = (encryptedStrategyValues, letter) => {
+  return Object.keys(encryptedStrategyValues).find((shape) => encryptedStrategyValues[shape].includes(letter))
+}
+
+const getMyShape = (gameRules, opponentShape, strategy) => {
+  switch (strategy) {
+    case 'Win': 
+      strategy = 'Lose'
+      break
+    case 'Lose': 
+      strategy = 'win'
+  }
+  let result
+  Object.entries(gameRules[opponentShape]).find((rule) => {
+    const [shape, outcome] = rule
+    result = shape
+    return outcome == strategy
+  })
+  return result
+}
+
+console.log(getMyShape(GAME_RULES, 'Rock', 'Win'))
 
 const getShapeScore = (shapeScores, shape) => {
   return shapeScores[shape]
