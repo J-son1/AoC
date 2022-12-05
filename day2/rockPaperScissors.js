@@ -22,23 +22,12 @@ const getOutcomeStrategy = (encryptedStrategyValues, letter) => {
 }
 
 const getMyShape = (gameRules, opponentShape, strategy) => {
-  switch (strategy) {
-    case 'Win': 
-      strategy = 'Lose'
-      break
-    case 'Lose': 
-      strategy = 'win'
+  if (strategy == 'Win') { strategy = 'Lose'}
+  if (strategy == 'Lose') { strategy = 'Win'}
+  for (const [shape, outcome] of Object.entries(gameRules[opponentShape])) {
+    if (outcome == strategy) return shape
   }
-  let result
-  Object.entries(gameRules[opponentShape]).find((rule) => {
-    const [shape, outcome] = rule
-    result = shape
-    return outcome == strategy
-  })
-  return result
 }
-
-console.log(getMyShape(GAME_RULES, 'Rock', 'Win'))
 
 const getShapeScore = (shapeScores, shape) => {
   return shapeScores[shape]
