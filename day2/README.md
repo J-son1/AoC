@@ -50,3 +50,11 @@ In the third round, you will defeat your opponent's Scissors with Rock for a sco
 Now that you're correctly decrypting the ultra top secret strategy guide, you would get a total score of 12.
 
 Following the Elf's instructions for the second column, **what would your total score be if everything goes exactly according to your strategy guide?**
+
+<details><summary>Your puzzle answer was:</summary>
+  
+  `14610`
+
+</details>
+
+### Both parts of this puzzle are complete! They provide two gold stars: `**`

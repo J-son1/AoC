@@ -22,10 +22,14 @@ const getOutcomeStrategy = (encryptedStrategyValues, letter) => {
 }
 
 const getMyShape = (gameRules, opponentShape, strategy) => {
-  if (strategy == 'Win') { strategy = 'Lose'}
-  if (strategy == 'Lose') { strategy = 'Win'}
+  switch (strategy) {
+    case 'Win': strategy = 'Lose'; break
+    case 'Lose': strategy = 'Win'; break
+  }
   for (const [shape, outcome] of Object.entries(gameRules[opponentShape])) {
-    if (outcome == strategy) return shape
+    if (outcome == strategy) {
+      return shape 
+    }
   }
 }
 
@@ -33,9 +37,7 @@ const getShapeScore = (shapeScores, shape) => {
   return shapeScores[shape]
 }
 
-const getMyOutcome = (rules, shapeValues, roundData) => {
-  const opponentShape = getShape(shapeValues, roundData[0])
-  const myShape = getShape(shapeValues, roundData[1])
+const getMyOutcome = (rules, myShape, opponentShape) => {
   return rules[myShape][opponentShape]
 }
 
@@ -49,15 +51,19 @@ const getMyRoundScore = (shapeScore, outcomeScore) => {
 
 const getMyTotalGameScore = (input) => {
   let myTotalGameScore = 0
+  let outcomeStrategy
+  let opponentShape
   let myShape
   let myShapeScore
   let myOutcome
   let myOutcomeScore
   let myRoundScore
   input.forEach(roundData => {
-    myShape = getShape(SHAPE_VALUES, roundData[1])
+    outcomeStrategy = getOutcomeStrategy(ENCRYPTED_STRATEGY_VALUES, roundData[1])
+    opponentShape = getShape(SHAPE_VALUES, roundData[0])
+    myShape = getMyShape(GAME_RULES, opponentShape, outcomeStrategy)
     myShapeScore = getShapeScore(SHAPE_SCORES, myShape)
-    myOutcome = getMyOutcome(GAME_RULES, SHAPE_VALUES, roundData)
+    myOutcome = getMyOutcome(GAME_RULES, myShape, opponentShape)
     myOutcomeScore = getMyOutcomeScore(OUTCOME_SCORES, myOutcome)
     myRoundScore = getMyRoundScore(myShapeScore, myOutcomeScore)
     myTotalGameScore += myRoundScore
@@ -65,6 +71,6 @@ const getMyTotalGameScore = (input) => {
   return myTotalGameScore
 }
 
-let myScore = getMyTotalGameScore(encryptedStrategyGuideArray)
+const myScore = getMyTotalGameScore(encryptedStrategyGuideArray)
 
 console.log(myScore)
