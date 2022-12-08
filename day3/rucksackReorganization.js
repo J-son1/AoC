@@ -34,6 +34,11 @@ const getPriorityValue = (item) => {
   return item.charCodeAt(0) - 96
 }
 
-// const itemPriorityValue = getPriorityValue('A')
+const getPriorityValuesTotal = (commonItemTypes) => {
+  return commonItemTypes.map((item) => getPriorityValue(item))
+    .reduce((sum, currentValue) => sum += currentValue, 0)
+}
 
-// console.log(itemPriorityValue)
+// const priorityValueTotal = getPriorityValuesTotal(['a','b','c','d'])
+
+// console.log(priorityValueTotal)
