@@ -26,7 +26,14 @@ const getCommonItemTypes = (compartment1, compartment2) => {
   return commonItemTypes
 }
 
-// const splitItemResult = splitItem(testInput)
-// const commonItemTypes = getCommonItemTypes(splitItemResult[0], splitItemResult[1])
+const getPriorityValue = (item) => {
+  const isUpperCase = /[A-Z]/.test(item)
+  if (isUpperCase) {
+    return item.charCodeAt(0) - 38
+  }
+  return item.charCodeAt(0) - 96
+}
 
-// console.log(commonItemTypes)
+// const itemPriorityValue = getPriorityValue('A')
+
+// console.log(itemPriorityValue)
