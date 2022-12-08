@@ -2,10 +2,7 @@ import { getInput } from '../helper.js'
 
 const input = getInput('day3/input.txt')
 
-// const testInput = 'vJrwpWtwJgWrhcsFMMfFFhFp'
-// const testInput = 'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL'
-
-const splitItem = (item) => {
+const splitItems = (item) => {
   const halfValue = item.length / 2
   const compartment1 = item.slice(0, halfValue)
   const compartment2 = item.slice(-halfValue)
@@ -26,7 +23,7 @@ const getCommonItemTypes = (compartment1, compartment2) => {
   return commonItemTypes
 }
 
-const getPriorityValue = (item) => {
+const getItemPriorityValue = (item) => {
   const isUpperCase = /[A-Z]/.test(item)
   if (isUpperCase) {
     return item.charCodeAt(0) - 38
@@ -34,11 +31,22 @@ const getPriorityValue = (item) => {
   return item.charCodeAt(0) - 96
 }
 
-const getPriorityValuesTotal = (commonItemTypes) => {
-  return commonItemTypes.map((item) => getPriorityValue(item))
+const getRucksackTotal = (commonItemTypes) => {
+  return commonItemTypes.map((item) => getItemPriorityValue(item))
     .reduce((sum, currentValue) => sum += currentValue, 0)
 }
 
-// const priorityValueTotal = getPriorityValuesTotal(['a','b','c','d'])
+const getSumOfAllCommonItems = (input) => {
+  let sum = 0
+  input.split('\n').forEach((items) => {
+    const compartments = splitItems(items)
+    const commonItems = getCommonItemTypes(compartments[0], compartments[1])
+    const RucksackCommonItemPriorityValueTotal = getRucksackTotal(commonItems)
+    sum += RucksackCommonItemPriorityValueTotal
+  })
+  return sum
+}
 
-// console.log(priorityValueTotal)
+const sum = getSumOfAllCommonItems(input)
+
+console.log(sum)
