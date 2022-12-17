@@ -1,6 +1,11 @@
 import { getInput } from '../helper.js'
 
 const input = getInput('day3/input.txt')
+const input1 = input.split('\n')
+const input2 = []
+while (input1.length) {
+  input2.push(input1.splice(0,3))
+}
 
 const splitItems = (item) => {
   const halfValue = item.length / 2
@@ -9,18 +14,19 @@ const splitItems = (item) => {
   return [compartment1, compartment2]
 }
 
-const getCommonItemTypes = (compartment1, compartment2) => {
-  let commonItemTypes = []
-  let compartment1Arr = [...compartment1]
-  let compartment2Arr = [...compartment2]
-  compartment1Arr.forEach((char1) => {
-    compartment2Arr.forEach((char2) => {
-      if (char2 == char1 && !commonItemTypes.includes(char2)) {
-        commonItemTypes.push(char2)
+function getCommonItemType(rucksacks) {
+  let firstRucksack = rucksacks.splice(0, 1)[0].split('')
+  for (let i = 0; i < firstRucksack.length; i++) {
+    let item = firstRucksack[i]
+    for (let j = 0; j < rucksacks.length; j++) {
+      let otherRucksack = rucksacks[j]
+      if (!otherRucksack.includes(item)) { 
+        break
+      } else if (j = rucksacks.length -1 && otherRucksack.includes(item)) {
+        return item
       }
-    })
-  })
-  return commonItemTypes
+    }
+  }
 }
 
 const getItemPriorityValue = (item) => {
@@ -38,7 +44,7 @@ const getRucksackTotal = (commonItemTypes) => {
 
 const getSumOfAllCommonItems = (input) => {
   let sum = 0
-  input.split('\n').forEach((items) => {
+  input.forEach((items) => {
     const compartments = splitItems(items)
     const commonItems = getCommonItemTypes(compartments[0], compartments[1])
     const RucksackCommonItemPriorityValueTotal = getRucksackTotal(commonItems)
@@ -47,6 +53,6 @@ const getSumOfAllCommonItems = (input) => {
   return sum
 }
 
-const sum = getSumOfAllCommonItems(input)
+// const sum = getSumOfAllCommonItems(input1)
 
-console.log(sum)
+// console.log(sum)
