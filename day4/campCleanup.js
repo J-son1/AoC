@@ -11,3 +11,9 @@ export function isAssignmentOneInAssignmentTwo(assignmentOne, assignmentTwo) {
   const a2range = Array.from({ length: a2SectionCount }, (_, i) => i + assignmentTwo[0])
   return (a2range.includes(assignmentOne[0]) && a2range.includes(assignmentOne[1])) ? true : false
 }
+
+export function isAssignmentDuplicated(assignmentOne, assignmentTwo) {
+  const assignmentOneResult = isAssignmentOneInAssignmentTwo(assignmentOne, assignmentTwo)
+  const assignmentTwoResult = isAssignmentOneInAssignmentTwo(assignmentTwo, assignmentOne)
+  return (assignmentOneResult || assignmentTwoResult) ? true : false
+}
