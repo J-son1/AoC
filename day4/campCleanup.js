@@ -17,3 +17,13 @@ export function isAssignmentDuplicated(assignmentOne, assignmentTwo) {
   const assignmentTwoResult = isAssignmentOneInAssignmentTwo(assignmentTwo, assignmentOne)
   return (assignmentOneResult || assignmentTwoResult) ? true : false
 }
+
+export function elfPairDuplicateAssignmentCount(input) {
+  let duplicateAssignmentCount = 0
+  input.forEach(pair => { if(isAssignmentDuplicated(pair[0], pair[1])) duplicateAssignmentCount++ })
+  return duplicateAssignmentCount
+}
+
+const answer = elfPairDuplicateAssignmentCount(input1)
+
+console.log('ANSWER: ', answer)

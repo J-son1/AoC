@@ -1,9 +1,11 @@
-import { getInput } from "../../helper";
-import { input1 } from "../campCleanup.js";
-import { isAssignmentOneInAssignmentTwo, isAssignmentDuplicated } from "../campCleanup.js";
+import { 
+  isAssignmentOneInAssignmentTwo,
+  isAssignmentDuplicated,
+  elfPairDuplicateAssignmentCount
+} from "../campCleanup.js";
 
 describe('part 2', () => {
-  let p1, p2, p3, p4, p5, p6
+  let p1, p2, p3, p4, p5, p6, pairs1
 
   beforeEach(() => {
     p1 = [[2, 4],[6, 8]]
@@ -12,6 +14,7 @@ describe('part 2', () => {
     p4 = [[2, 8],[3, 7]]
     p5 = [[6, 6],[4, 6]]
     p6 = [[2, 6],[4, 8]]
+    pairs1 = [p1, p2, p3, p4, p5, p6]
   })
 
   describe('isAssignmentOneInAssignmentTwo', () => {
@@ -33,6 +36,12 @@ describe('part 2', () => {
       expect(isAssignmentDuplicated(p4[0], p4[1])).toEqual(true)
       expect(isAssignmentDuplicated(p5[0], p5[1])).toEqual(true)
       expect(isAssignmentDuplicated(p6[0], p6[1])).toEqual(false)
+    })
+  })
+
+  describe('elfPairDuplicateAssignmentCount', () => {
+    it('returns the count of elf pairs containing a duplicate assignment', () => {
+      expect(elfPairDuplicateAssignmentCount(pairs1)).toEqual(2)
     })
   })
 })
