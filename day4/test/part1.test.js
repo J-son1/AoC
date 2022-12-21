@@ -4,7 +4,7 @@ import {
   elfPairDuplicateAssignmentCount
 } from "../campCleanup.js";
 
-describe('part 2', () => {
+describe('part 1', () => {
   let p1, p2, p3, p4, p5, p6, pairs1
 
   beforeEach(() => {
