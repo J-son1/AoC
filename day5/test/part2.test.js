@@ -2,7 +2,7 @@ import {
   getTopCrates
 } from "../supplyStacks.js";
 
-describe('part 1', () => {
+describe('part 2', () => {
 
   let startingStacks
   let input
@@ -14,7 +14,7 @@ describe('part 1', () => {
 
   describe('getTopCrates', () => {
     it('returns the crate at the top of each stack after the rearrangment procedure completes', () => {
-      expect(getTopCrates(input, startingStacks)).toEqual('CMZ')
+      expect(getTopCrates(input, startingStacks)).toEqual('MCD')
     })
   })
 })

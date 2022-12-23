@@ -14,18 +14,18 @@ const startingStacks = [
   ['W', 'P', 'J']
 ]
 
-export function getTopCrates(input, stacks) {
+export function getTopCrates(input, startingStacks) {
   let topCrates = ''
   input.forEach((line) => {
     const numberOfCratesToMove = line[0]
-    const moveFrom = line[1] - 1
-    const moveTo = line[2] - 1
-    for (let i = 0; i < numberOfCratesToMove; i++) {
-      const crate = stacks[moveFrom].pop()
-      stacks[moveTo].push(crate)
-    }
+    const firstStack = startingStacks[line[1] - 1]
+    const secondStack = startingStacks[line[2] - 1]
+    const moveFrom = firstStack.length - numberOfCratesToMove
+    const moveTo = secondStack.length
+    const cratesToMove = firstStack.splice(moveFrom, numberOfCratesToMove)
+    secondStack.splice(moveTo, 0, ...cratesToMove)
   })
-  stacks.forEach(stack => topCrates += stack[stack.length -1])
+  startingStacks.forEach(stack => topCrates += stack[stack.length -1])
   return topCrates
 }
 
