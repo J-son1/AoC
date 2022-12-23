@@ -74,7 +74,7 @@ The Elves just need to know which crate will end up on top of each stack; in thi
 ### The first half of this puzzle is complete! It provides one gold star: `*`
 
 
-# --- Part Two ---
+## --- Part Two ---
 
 As you watch the crane operator expertly rearrange the crates, you notice the process isn't following your prediction.
 
