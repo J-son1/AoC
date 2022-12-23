@@ -17,5 +17,5 @@ export function getStartOfPacketMarkerPosition(input, numberOfUniqeChars) {
   }
 }
 
-const answer = getStartOfPacketMarkerPosition(input1, 4)
+const answer = getStartOfPacketMarkerPosition(input1, 14)
 console.log('ANSWER: ', answer)
