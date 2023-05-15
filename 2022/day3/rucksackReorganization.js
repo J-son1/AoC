@@ -11,7 +11,6 @@ function transformInput(input) {
   return result
 }
 
-
 export function getCommonItemType(rucksacks) {
   let commonItem
   let firstRucksack = rucksacks[0].split('')

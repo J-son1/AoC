@@ -2,7 +2,6 @@ import { getInput } from '../helper.js'
 
 export const input = getInput('day4/input.txt')
 
-
 export function isAssignmentOneInAssignmentTwo(assignmentOne, assignmentTwo) {
   const a2SectionCount = assignmentTwo[1] - assignmentTwo[0] + 1
   const a2range = Array.from({ length: a2SectionCount }, (_, i) => i + assignmentTwo[0])
