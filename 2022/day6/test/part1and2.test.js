@@ -17,16 +17,16 @@ describe('part 1 and 2', () => {
 
   describe('getStartOfPacketMarkerPosition', () => {
     it('returns the number of characters that need to be processed before the first start-of-packet marker is detected', () => {
-      expect(getStartOfPacketMarkerPosition(input1.split(''), 4)).toEqual(5)
-      expect(getStartOfPacketMarkerPosition(input2.split(''), 4)).toEqual(6)
-      expect(getStartOfPacketMarkerPosition(input3.split(''), 4)).toEqual(10)
-      expect(getStartOfPacketMarkerPosition(input4.split(''), 4)).toEqual(11)
+      expect(getStartOfPacketMarkerPosition(input1, 4)).toEqual(5)
+      expect(getStartOfPacketMarkerPosition(input2, 4)).toEqual(6)
+      expect(getStartOfPacketMarkerPosition(input3, 4)).toEqual(10)
+      expect(getStartOfPacketMarkerPosition(input4, 4)).toEqual(11)
 
-      expect(getStartOfPacketMarkerPosition(input5.split(''), 14)).toEqual(19)
-      expect(getStartOfPacketMarkerPosition(input6.split(''), 14)).toEqual(23)
-      expect(getStartOfPacketMarkerPosition(input7.split(''), 14)).toEqual(23)
-      expect(getStartOfPacketMarkerPosition(input8.split(''), 14)).toEqual(29)
-      expect(getStartOfPacketMarkerPosition(input9.split(''), 14)).toEqual(26)
+      expect(getStartOfPacketMarkerPosition(input5, 14)).toEqual(19)
+      expect(getStartOfPacketMarkerPosition(input6, 14)).toEqual(23)
+      expect(getStartOfPacketMarkerPosition(input7, 14)).toEqual(23)
+      expect(getStartOfPacketMarkerPosition(input8, 14)).toEqual(29)
+      expect(getStartOfPacketMarkerPosition(input9, 14)).toEqual(26)
     })
   })
 })

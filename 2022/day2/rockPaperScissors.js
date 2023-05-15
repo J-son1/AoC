@@ -1,7 +1,6 @@
 import { getInput } from '../helper.js'
 
 const input = getInput('day2/input.txt')
-const encryptedStrategyGuideArray = input.split('\n').map(round => round.split(' '))
 
 const SHAPE_VALUES = { 'Rock': ['A', 'X'], 'Paper': ['B', 'Y'], 'Scissors': ['C', 'Z'] }
 const SHAPE_SCORES = { 'Rock': 1, 'Paper': 2, 'Scissors': 3 }
@@ -49,7 +48,8 @@ const getMyRoundScore = (shapeScore, outcomeScore) => {
   return shapeScore + outcomeScore
 }
 
-const getMyTotalGameScore = (input) => {
+export const getMyTotalGameScore = (input) => {
+  const encryptedStrategyGuideArray = input.split('\n').map(round => round.split(' '))
   let myTotalGameScore = 0
   let outcomeStrategy
   let opponentShape
@@ -58,7 +58,7 @@ const getMyTotalGameScore = (input) => {
   let myOutcome
   let myOutcomeScore
   let myRoundScore
-  input.forEach(roundData => {
+  encryptedStrategyGuideArray.forEach(roundData => {
     outcomeStrategy = getOutcomeStrategy(ENCRYPTED_STRATEGY_VALUES, roundData[1])
     opponentShape = getShape(SHAPE_VALUES, roundData[0])
     myShape = getMyShape(GAME_RULES, opponentShape, outcomeStrategy)
@@ -71,6 +71,6 @@ const getMyTotalGameScore = (input) => {
   return myTotalGameScore
 }
 
-const myScore = getMyTotalGameScore(encryptedStrategyGuideArray)
+export const day2Answer = getMyTotalGameScore(input)
 
-console.log(myScore)
+// console.log('ANSWER: ', day2Answer)

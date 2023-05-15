@@ -1,9 +1,7 @@
-import { getInput } from "../../helper";
-import { input2 } from "../rucksackReorganization";
 import { getCommonItemType, getSumOfAllCommonItems } from "../rucksackReorganization";
 
 describe('part 2', () => {
-  let group1, group2, group3, group4, group5, group6, groups1, groups2, groups3, groups4
+  let group1, group2, group3, group4, group5, group6, group7, group8, groups1, groups2, groups3, groups4
 
   beforeEach(() => {
     group1 = ['TZZjzzZLfZbzgzZNNJZjwCVbwMmhwCbBpCMMBCbM', 'qRQPDqnWFQDtCCBQmQwmGGVG', 'FPllWPDPrncZsLVrgSZTSZ']
@@ -12,10 +10,16 @@ describe('part 2', () => {
     group4 = ['ZVhCwqvFZVpwdhLdqLhtvcGBcSNLRSRBGRBNGNSSmN', 'lTjnlnjgslsjJTgrMrQQjjTSGSpcGRSmDBNSNJcDSBbRmS', 'zMrjllgnPrlrnlWrQgTgzgvwqpFwZHChHvPwCtVptCVt']
     group5 = ['RTjjznsTsnnrzRrmTmrNNCMhwMrCNNCwWhCMGN', 'DvScpDDVfBPqVcSbDpbfHpqwCWGJCwCJhvFdFFwlMGJWCG', 'fhHPbhZSpDbDTmsTZTjRzzQz']
     group6 = ['QbVQvNrrdFcbcMvvdNrcGrrczPnPplPnfnpzwpgmlflRVwwP', 'jBHLRqZWtLLqWDhBLshBCLsHgpfftfPmmpfpwnwfwJgfpfPn', 'WCRhsLDsDLBChTLWHChFTTMdGTQGvGQcMQNGMd']
-    groups1 = [group1, group2, group3]
-    groups2 = [group4, group5, group6]
-    groups3 = [['abcde', 'afghi','ajklmn'],['bopqrs', 'btuvwx', 'byzABC']]
-    groups4 = [['aBcaAbC', 'eFgaEfG','hIjaHiJ'],['kLmjKlm', 'nOpjNoP', 'qRsjQrS']]
+    group7 = ['abcde','afghi','ajklmn']
+    group8 = ['bopqrs','btuvwx','byzABC']
+    groups1 = 'TZZjzzZLfZbzgzZNNJZjwCVbwMmhwCbBpCMMBCbM\nqRQPDqnWFQDtCCBQmQwmGGVG\nFPllWPDPrncZsLVrgSZTSZ\n\
+      RczPzRzvflVwfplrZQglmmJJDGQJ\nnFbBWWFZbZtJDjmgmqqF\nbnMNZWnWWHTLBBdwcCwcPCwpCSpPLc\n\
+      CjpMtptpChnpMnCSGjSShMqpTVVWFFTVNVNLmHwmHLTcFnVT\nfglsGJsJssBPszvddgTFVTFFFBwwTVVmHVFF\nJgJrDgsPfMDhGhCRQC'
+    groups2 = 'ZVhCwqvFZVpwdhLdqLhtvcGBcSNLRSRBGRBNGNSSmN\nlTjnlnjgslsjJTgrMrQQjjTSGSpcGRSmDBNSNJcDSBbRmS\nzMrjllgnPrlrnlWrQgTgzgvwqpFwZHChHvPwCtVptCVt\n\
+      RTjjznsTsnnrzRrmTmrNNCMhwMrCNNCwWhCMGN\nDvScpDDVfBPqVcSbDpbfHpqwCWGJCwCJhvFdFFwlMGJWCG\nfhHPbhZSpDbDTmsTZTjRzzQz\n\
+      QbVQvNrrdFcbcMvvdNrcGrrczPnPplPnfnpzwpgmlflRVwwP\njBHLRqZWtLLqWDhBLshBCLsHgpfftfPmmpfpwnwfwJgfpfPn\nWCRhsLDsDLBChTLWHChFTTMdGTQGvGQcMQNGMd'
+    groups3 = 'abcde\nafghi\najklmn\nbopqrs\nbtuvwx\nbyzABC'
+    groups4 = 'aBcaAbC\neFgaEfG\nhIjaHiJ\nkLmjKlm\nnOpjNoP\nqRsjQrS'
   })
 
   describe('getCommonItemType', () => {
@@ -26,8 +30,8 @@ describe('part 2', () => {
       expect(getCommonItemType(group4)).toEqual('p')
       expect(getCommonItemType(group5)).toEqual('h')
       expect(getCommonItemType(group6)).toEqual('R')
-      expect(getCommonItemType(groups3[0])).toEqual('a')
-      expect(getCommonItemType(groups3[1])).toEqual('b')
+      expect(getCommonItemType(group7)).toEqual('a')
+      expect(getCommonItemType(group8)).toEqual('b')
     })
   })
 

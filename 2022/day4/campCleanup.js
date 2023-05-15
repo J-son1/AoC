@@ -1,10 +1,7 @@
 import { getInput } from '../helper.js'
 
 export const input = getInput('day4/input.txt')
-export const input1 = input.split('\n')
-  .map(elfPair => elfPair.split(','))
-  .map(elfPair => elfPair.map(sections => sections.split('-')))
-  .map(elfPair => elfPair.map(sections => sections.map(section => Number(section))))
+
 
 export function isAssignmentOneInAssignmentTwo(assignmentOne, assignmentTwo) {
   const a2SectionCount = assignmentTwo[1] - assignmentTwo[0] + 1
@@ -19,11 +16,16 @@ export function isAssignmentDuplicated(assignmentOne, assignmentTwo) {
 }
 
 export function elfPairDuplicateAssignmentCount(input) {
+  const transformedInput = input.split('\n')
+    .map(elfPair => elfPair.split(','))
+    .map(elfPair => elfPair.map(sections => sections.split('-')))
+    .map(elfPair => elfPair.map(sections => sections.map(section => Number(section))))
+
   let duplicateAssignmentCount = 0
-  input.forEach(pair => { if(isAssignmentDuplicated(pair[0], pair[1])) duplicateAssignmentCount++ })
+  transformedInput.forEach(pair => { if(isAssignmentDuplicated(pair[0], pair[1])) duplicateAssignmentCount++ })
   return duplicateAssignmentCount
 }
 
-const answer = elfPairDuplicateAssignmentCount(input1)
+export const day4Answer = elfPairDuplicateAssignmentCount(input)
 
-console.log('ANSWER: ', answer)
+// console.log('ANSWER: ', day4Answer)

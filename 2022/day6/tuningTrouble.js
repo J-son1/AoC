@@ -1,15 +1,15 @@
 import { getInput } from '../helper.js'
 
 const input = getInput('day6/input.txt')
-const input1 = input.split('')
 
 export function getStartOfPacketMarkerPosition(input, numberOfUniqeChars) {
-  for (let i = 0; i < input.length - numberOfUniqeChars; i++) {
+  const transformedInput = input.split('')
+  for (let i = 0; i < transformedInput.length - numberOfUniqeChars; i++) {
     let marker = []
-    marker.push(input[i])
+    marker.push(transformedInput[i])
     for (let j = 1; j < numberOfUniqeChars; j++) {
       if (marker.includes(input[i + j])) break
-      marker.push(input[i + j])
+      marker.push(transformedInput[i + j])
       if (j == numberOfUniqeChars - 1) {
         return i + numberOfUniqeChars
       }
@@ -17,5 +17,6 @@ export function getStartOfPacketMarkerPosition(input, numberOfUniqeChars) {
   }
 }
 
-const answer = getStartOfPacketMarkerPosition(input1, 14)
-console.log('ANSWER: ', answer)
+export const day6Answer = getStartOfPacketMarkerPosition(input, 14)
+
+// console.log('ANSWER: ', day6Answer)

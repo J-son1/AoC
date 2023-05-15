@@ -1,7 +1,6 @@
 import { getInput } from '../helper.js'
 
 const input = getInput('day5/input.txt')
-const input1 = input.split('\n').map((line) => line.match(/\d+/g))
 const startingStacks = [
   ['N', 'B', 'D', 'T', 'V', 'G', 'Z', 'J'],
   ['S', 'R', 'M', 'D', 'W', 'P', 'F'],
@@ -15,8 +14,9 @@ const startingStacks = [
 ]
 
 export function getTopCrates(input, startingStacks) {
+  const transformedInput = input.split('\n').map((line) => line.match(/\d+/g))
   let topCrates = ''
-  input.forEach((line) => {
+  transformedInput.forEach((line) => {
     const numberOfCratesToMove = line[0]
     const firstStack = startingStacks[line[1] - 1]
     const secondStack = startingStacks[line[2] - 1]
@@ -29,5 +29,6 @@ export function getTopCrates(input, startingStacks) {
   return topCrates
 }
 
-const answer = getTopCrates(input1, startingStacks)
-console.log('ANSWER: ', answer)
+export const day5Answer = getTopCrates(input, startingStacks)
+
+// console.log('ANSWER: ', day5Answer)

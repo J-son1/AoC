@@ -9,7 +9,7 @@ describe('part 2', () => {
 
   beforeEach(() => {
     startingStacks = [['Z', 'N'], ['M', 'C', 'D'], ['P']]
-    input = [[1, 2, 1], [3, 1, 3], [2, 2, 1], [1, 1, 2]]
+    input = 'move 1 from 2 to 1\nmove 3 from 1 to 3\nmove 2 from 2 to 1\nmove 1 from 1 to 2'
   })
 
   describe('getTopCrates', () => {
