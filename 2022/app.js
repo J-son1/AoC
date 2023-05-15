@@ -20,7 +20,13 @@ const answers = [
   day6Answer
 ]
 
-function app(rl, answers) {
+const instructions = '\nCommands: \n\
+  all - view all answers\n\
+  [number] - to filter answers by day\n\
+  x - to close app\n\
+  help (h) - to view commands\n'
+
+function app() {
   rl.question('Enter command > ', (userInput) => {
     const command = isNaN(Number(userInput.trim()))
       ? userInput.trim().toLowerCase
@@ -38,6 +44,11 @@ function app(rl, answers) {
         case 'x':
           rl.close()
           return
+        case 'help' || 'h':
+          console.log(instructions)
+          break
+        default:
+          console.log(instructions)
       }
     } else if (command > completed) {
       console.log(`Please choose a number between 1-${completed}`)
@@ -48,4 +59,4 @@ function app(rl, answers) {
   })
 }
 
-app(rl, answers)
+app()
