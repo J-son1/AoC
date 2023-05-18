@@ -2,39 +2,39 @@ import { getInput } from '../helper.js'
 
 const input = getInput('day3/input.txt')
 
-function transformInput(input) {
+function getArrayOfArraysOf3rucksacks(input) {
   const formattedInput = input.split('\n')
-  const result = []
+  const arrayOfArraysOf3rucksacks = []
   while (formattedInput.length) {
-    result.push(formattedInput.splice(0,3))
+    arrayOfArraysOf3rucksacks.push(formattedInput.splice(0,3))
   }
-  return result
+  return arrayOfArraysOf3rucksacks
 }
 
-export function getCommonItemType(rucksacks) {
+export function getCommonItemType(arrayOf3Rucksacks) {
   let commonItem
-  let firstRucksack = rucksacks[0].split('')
+  let firstRucksack = arrayOf3Rucksacks[0].split('')
   firstRucksack.forEach((item) => {
-    if (rucksacks[1].includes(item) && rucksacks[2].includes(item)) {
+    if (arrayOf3Rucksacks[1].includes(item) && arrayOf3Rucksacks[2].includes(item)) {
       commonItem = item
     }
   })
   return commonItem
 }
 
-export function getItemPriorityValue(item) {
-  const isUpperCase = /[A-Z]/.test(item)
+export function getItemPriorityValue(itemChar) {
+  const isUpperCase = /[A-Z]/.test(itemChar)
   if (isUpperCase) {
-    return item.charCodeAt(0) - 38
+    return itemChar.charCodeAt(0) - 38
   }
-  return item.charCodeAt(0) - 96
+  return itemChar.charCodeAt(0) - 96
 }
 
 export function getSumOfAllCommonItems(input) {
-  const formattedInput = transformInput(input)
+  const arrayOfArraysOf3rucksacks = getArrayOfArraysOf3rucksacks(input)
 
   let sum = 0
-  formattedInput.forEach((elfGroupRucksacks) => {
+  arrayOfArraysOf3rucksacks.forEach((elfGroupRucksacks) => {
     const commonItem = getCommonItemType(elfGroupRucksacks)
     const commonItemPriorityValue = getItemPriorityValue(commonItem)
     sum += commonItemPriorityValue

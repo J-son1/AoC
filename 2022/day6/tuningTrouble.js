@@ -3,15 +3,18 @@ import { getInput } from '../helper.js'
 const input = getInput('day6/input.txt')
 
 export function getStartOfPacketMarkerPosition(input, numberOfUniqeChars) {
-  const transformedInput = input.split('')
-  for (let i = 0; i < transformedInput.length - numberOfUniqeChars; i++) {
-    let marker = []
-    marker.push(transformedInput[i])
-    for (let j = 1; j < numberOfUniqeChars; j++) {
-      if (marker.includes(input[i + j])) break
-      marker.push(transformedInput[i + j])
-      if (j == numberOfUniqeChars - 1) {
-        return i + numberOfUniqeChars
+  const signalString = input.split('')
+  let marker
+  let position
+  for (let markerStart = 0; markerStart < signalString.length - numberOfUniqeChars; markerStart++) {  
+    marker = []
+    marker.push(signalString[markerStart])
+    for (let markerEnd = 1; markerEnd < numberOfUniqeChars; markerEnd++) {
+      position = markerStart + markerEnd
+      if (marker.includes(signalString[position])) break
+      marker.push(signalString[position])
+      if (markerEnd === numberOfUniqeChars - 1) {
+        return markerStart + numberOfUniqeChars
       }
     }
   }
