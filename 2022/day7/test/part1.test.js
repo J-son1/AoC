@@ -71,4 +71,22 @@ describe('part 1', () => {
       expect(actualDirectorySizes['d']).toBe(expectedDirectorySizes['d'])
     })
   })
+
+  describe('getDirectorySizesTotal', () => {
+    it('returns the sum of directory sizes', () => {
+      const directorySizes = fileSystem.getDirectorySizes()
+      const actualTotal = fileSystem.getDirectorySizesTotal()
+      const expectedTotal = 73410244
+      
+      expect(actualTotal).toBe(expectedTotal)
+    })
+
+    it('returns the sum of directory sizes given a max size for a single directory', () => {
+      const directorySizes = fileSystem.getDirectorySizes()
+      const actualTotal = fileSystem.getDirectorySizesTotal(100000)
+      const expectedTotal = 95437
+      
+      expect(actualTotal).toBe(expectedTotal)
+    })
+  })
 })

@@ -84,6 +84,17 @@ export class FileSystem {
     }
     return directorySizes
   }
+
+  getDirectorySizesTotal(maxDirectorySize = Infinity) {
+    let directorySizes = this.getDirectorySizes()
+    return Object.entries(directorySizes)
+      .reduce((total, [_name, size]) => {
+        if (size <= maxDirectorySize) {
+          return total += size
+        }
+        return total
+      }, 0)
+  }
 }
 
 class File {
