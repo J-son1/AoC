@@ -35,23 +35,40 @@ describe('part 1', () => {
           expect(expectedChildren[1].type).toBe('file')
         })
 
-        it('creates nested directories with parent directories', () => {
+        it('creates nested directories', () => {
           const rootDirectory = fileSystem.root
-          const directory1down = rootDirectory.content[0]
-          const directory2down = directory1down.content[0]
+          const directoryLevel1 = rootDirectory.content[0]
+          const directoryLevel2 = directoryLevel1.content[0]
 
           expect(rootDirectory.name).toBe('/')
           expect(rootDirectory.content.length).toBe(4)
-          expect(directory1down.name).toBe('a')
-          expect(directory1down.content.length).toBe(4)
-          expect(directory2down.name).toBe('e')
+          expect(directoryLevel1.name).toBe('a')
+          expect(directoryLevel1.content.length).toBe(4)
+          expect(directoryLevel2.name).toBe('e')
         })
 
-        it('appends a file with a name and file size', () => {
+        it('appends a file with a file size', () => {
           expect(fileSystem.root.content[1].name).toBe('b.txt')
-          expect(fileSystem.root.content[1].fileSize).toBe(14848514)
+          expect(fileSystem.root.content[1].size).toBe(14848514)
         })
       })
+    })
+  })
+
+  describe('getDirectorySize', () => {
+    it('returns a list of directory sizes', () => {
+      const actualDirectorySizes = fileSystem.getDirectorySizes()
+      const expectedDirectorySizes = {
+        '/': 48381165,
+        'a': 94853,
+        'e': 584,
+        'd': 24933642
+      }
+
+      expect(actualDirectorySizes['/']).toBe(expectedDirectorySizes['/'])
+      expect(actualDirectorySizes['a']).toBe(expectedDirectorySizes['a'])
+      expect(actualDirectorySizes['e']).toBe(expectedDirectorySizes['e'])
+      expect(actualDirectorySizes['d']).toBe(expectedDirectorySizes['d'])
     })
   })
 })
