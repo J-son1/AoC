@@ -2,7 +2,7 @@ import { getInput } from '../helper.js'
 
 const input = getInput('day1/input.txt')
 
-const getTopCaloriesCarriedTotal = (input, numberOfTopElves = 1) => {
+export const getTopCaloriesCarriedTotal = (input, numberOfTopElves = 1) => {
   const elfCaloriesCarriedArray = input
     .split("\n\n")
     .map(elf => elf.split("\n")
@@ -18,7 +18,3 @@ const getTopCaloriesCarriedTotal = (input, numberOfTopElves = 1) => {
   }
   return topCaloriesCarried.reduce((sum, currentValue) => sum + currentValue, 0)
 }
-
-export const day1Answer = getTopCaloriesCarriedTotal(input, 3)
-
-// console.log('ANSWER: ', day1Answer)

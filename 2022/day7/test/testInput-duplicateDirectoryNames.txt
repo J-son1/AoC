@@ -2,15 +2,15 @@ $ cd /
 $ ls
 dir a
 dir b
-10 c
+10 x
 $ cd a
 $ ls
 dir b
 $ cd b
 $ ls
-10 e
+10 y
 $ cd ..
 $ cd ..
 $ cd b
 $ ls
-10 e
+10 z

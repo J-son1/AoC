@@ -24,7 +24,3 @@ export function elfPairDuplicateAssignmentCount(input) {
   transformedInput.forEach(pair => { if(isAssignmentDuplicated(pair[0], pair[1])) duplicateAssignmentCount++ })
   return duplicateAssignmentCount
 }
-
-export const day4Answer = elfPairDuplicateAssignmentCount(input)
-
-// console.log('ANSWER: ', day4Answer)

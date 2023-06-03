@@ -41,7 +41,3 @@ export function getSumOfAllCommonItems(input) {
   })
   return sum
 }
-
-export const day3Answer = getSumOfAllCommonItems(input)
-
-// console.log('ANSWER: ', day3Answer)

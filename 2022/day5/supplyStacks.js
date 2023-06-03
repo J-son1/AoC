@@ -1,7 +1,7 @@
 import { getInput } from '../helper.js'
 
 const input = getInput('day5/input.txt')
-const startingStacks = [
+export const startingStacks = [
   ['N', 'B', 'D', 'T', 'V', 'G', 'Z', 'J'],
   ['S', 'R', 'M', 'D', 'W', 'P', 'F'],
   ['V', 'C', 'R', 'S', 'Z'],
@@ -28,7 +28,3 @@ export function getTopCrates(input, startingStacks) {
   startingStacks.forEach(stack => topCrates += stack[stack.length -1])
   return topCrates
 }
-
-export const day5Answer = getTopCrates(input, startingStacks)
-
-// console.log('ANSWER: ', day5Answer)

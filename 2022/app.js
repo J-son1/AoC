@@ -1,10 +1,22 @@
 import readline from 'readline'
-import { day1Answer } from './day1/calorieCounting.js'
-import { day2Answer } from './day2/rockPaperScissors.js'
-import { day3Answer } from './day3/rucksackReorganization.js'
-import { day4Answer } from './day4/campCleanup.js'
-import { day5Answer } from './day5/supplyStacks.js'
-import { day6Answer } from './day6/tuningTrouble.js'
+import { getInput } from './helper.js'
+import { getTopCaloriesCarriedTotal } from './day1/calorieCounting.js'
+import { getMyTotalGameScore } from './day2/rockPaperScissors.js'
+import { getSumOfAllCommonItems } from './day3/rucksackReorganization.js'
+import { elfPairDuplicateAssignmentCount } from './day4/campCleanup.js'
+import { getTopCrates, startingStacks } from './day5/supplyStacks.js'
+import { getStartOfPacketMarkerPosition } from './day6/tuningTrouble.js'
+import { FileSystem } from './day7/noSpaceLeftOnDevice.js'
+
+const day1input = getInput('./day1/input.txt')
+const day2input = getInput('./day2/input.txt')
+const day3input = getInput('./day3/input.txt')
+const day4input = getInput('./day4/input.txt')
+const day5input = getInput('./day5/input.txt')
+const day6input = getInput('./day6/input.txt')
+const day7input = getInput('./day7/input.txt')
+const fileSystem = new FileSystem()
+fileSystem.generate(day7input)
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -12,12 +24,13 @@ const rl = readline.createInterface({
 })
 
 const answers = [
-  day1Answer,
-  day2Answer,
-  day3Answer,
-  day4Answer,
-  day5Answer,
-  day6Answer
+  getTopCaloriesCarriedTotal(day1input, 3),
+  getMyTotalGameScore(day2input),
+  getSumOfAllCommonItems(day3input),
+  elfPairDuplicateAssignmentCount(day4input),
+  getTopCrates(day5input, startingStacks),
+  getStartOfPacketMarkerPosition(day6input, 14),
+  fileSystem.getDirectorySizesTotal()
 ]
 
 const instructions = '\nCommands: \n\

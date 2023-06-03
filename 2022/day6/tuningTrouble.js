@@ -19,7 +19,3 @@ export function getStartOfPacketMarkerPosition(input, numberOfUniqeChars) {
     }
   }
 }
-
-export const day6Answer = getStartOfPacketMarkerPosition(input, 14)
-
-// console.log('ANSWER: ', day6Answer)
