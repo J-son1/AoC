@@ -1,7 +1,7 @@
 import { getInput } from "../../helper.js";
 import { FileSystem } from "../noSpaceLeftOnDevice.js";
 
-const testInput = getInput('day7/input-test.txt')
+const testInput = getInput('day7/test/testInput.txt')
 
 describe('part 1', () => {
   let fileSystem
