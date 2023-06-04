@@ -5,10 +5,12 @@ const input = getInput('day7/input.txt')
 export class FileSystem {
   constructor() {
     this.root = null
+    this.current
   }
 
   generate(input) {
     const arrayOfArrays = inputToArrayOfArrays(input)
+    let id = 0
     let parent
     let current
     let newFile
@@ -16,12 +18,15 @@ export class FileSystem {
       if (line[0] === '$') {
         if (line[1] === 'cd') {
           if (i === 0) {
-            this.root = new File('dir', line[2], [], null)
+            this.root = new File(id, 'dir', line[2], [], null)
             current = this.root
+            id++
           } else {
             if (line[2] === '..') {
               if (current !== this.root) {
-                let cd = this.#changeDirectory(null, this.root, parent.name)
+                let cd = this.#changeDirectory(this.root, this.root, parent.name, parent.id)
+                if (cd == null) {
+                }
                 parent = cd.currentParent
                 current = cd.currentDirectory
               } else {
@@ -38,28 +43,30 @@ export class FileSystem {
       }
 
       if (i !== 0 && line[0] === 'dir') {
-        newFile = new File('dir', line[1], [])
+        newFile = new File(id, 'dir', line[1], [])
         current.content.push(newFile)
+        id++
       }
 
       if (i !== 0 && !isNaN(line[0])) {
         let filename = line.length > 2 ? `${line[1]}.${line[2]}` : line[1]
-        newFile = new File('file', filename, null, line[0])
+        newFile = new File(id, 'file', filename, null, line[0])
         current.content.push(newFile)
+        id++
       }
     })
   }
 
-  #changeDirectory(currentParent, currentDirectory, directoryName) {
+  #changeDirectory(currentParent, currentDirectory, directoryName, directoryId) {
     if (currentDirectory.type === 'dir') {
-      if (currentDirectory.name === directoryName) {
+      if (currentDirectory.name === directoryName && currentDirectory.id === directoryId) {
         return { currentParent, currentDirectory }
       }
 
       let contentLength = currentDirectory.content.length
       for (let i = 0; i < contentLength; i++) {
         if (currentDirectory.type === 'dir') {
-          return this.#changeDirectory(currentDirectory, currentDirectory.content[i], directoryName)
+          return this.#changeDirectory(currentDirectory, currentDirectory.content[i], directoryName, directoryId)
         }
       }
     }
@@ -98,7 +105,8 @@ export class FileSystem {
 }
 
 class File {
-  constructor(type, name, content, fileSize = 0) {
+  constructor(id, type, name, content, fileSize = 0) {
+    this.id = id
     this.type = type
     this.name = name
     this.content = content

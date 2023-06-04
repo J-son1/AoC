@@ -17,6 +17,8 @@ const day6input = getInput('./day6/input.txt')
 const day7input = getInput('./day7/input.txt')
 const fileSystem = new FileSystem()
 fileSystem.generate(day7input)
+// const testInput2 = getInput('./day7/test/testInput-duplicateDirectoryNames.txt')
+// fileSystem.generate(testInput2)
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -33,11 +35,11 @@ const answers = [
   fileSystem.getDirectorySizesTotal()
 ]
 
-const instructions = '\nCommands: \n\
-  all - view all answers\n\
-  [number] - to filter answers by day\n\
-  x - to close app\n\
-  help (h) - to view commands\n'
+const instructions = `\nCommands:
+  all      - view all answers
+  [number] - to filter answers by day
+  x        - to close app
+  help (h) - to view commands\n`
 
 function app() {
   rl.question('Enter command > ', (userInput) => {

@@ -2,6 +2,7 @@ import { getInput } from "../../helper.js";
 import { FileSystem } from "../noSpaceLeftOnDevice.js";
 
 const testInput = getInput('day7/test/testInput.txt')
+const testInput2 = getInput('day7/test/testInput-duplicateDirectoryNames.txt')
 
 describe('part 1', () => {
   let fileSystem
@@ -51,6 +52,12 @@ describe('part 1', () => {
           expect(fileSystem.root.content[1].name).toBe('b.txt')
           expect(fileSystem.root.content[1].size).toBe(14848514)
         })
+
+        it('creates directories with an ID', () => {
+          expect(fileSystem.root.id).toBe(0)
+          expect(fileSystem.root.content[0].id).toBe(1)
+          expect(fileSystem.root.content[3].id).toBe(4)
+        })
       })
     })
   })
@@ -87,6 +94,13 @@ describe('part 1', () => {
       const expectedTotal = 95437
       
       expect(actualTotal).toBe(expectedTotal)
+    })
+
+    it('returns the sum of directory sizes when there are duplicate directory names', () => {
+      fileSystem.generate(testInput2)
+      const actualTotal = fileSystem.getDirectorySizesTotal()
+
+      expect(actualTotal).toBe(70)
     })
   })
 })
